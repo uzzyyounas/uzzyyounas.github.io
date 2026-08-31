@@ -1,49 +1,595 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Usman Younas | Developer Portfolio</title>
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f5f7fa;
-      color: #17202a;
-      display: flex;
-      min-height: 100vh;
-      align-items: center;
-      justify-content: center;
-    }
-    .card {
-      width: min(720px, 92%);
-      background: white;
-      padding: 50px 35px;
-      border-radius: 18px;
-      text-align: center;
-      box-shadow: 0 12px 40px rgba(0,0,0,.08);
-    }
-    h1 { margin: 0 0 12px; font-size: 42px; }
-    p { color: #5f6b76; font-size: 18px; line-height: 1.6; }
-    .badge {
-      display: inline-block;
-      margin-top: 15px;
-      padding: 10px 18px;
-      border-radius: 30px;
-      background: #eef7f0;
-      color: #18753c;
-      font-weight: bold;
-    }
-    footer { margin-top: 30px; font-size: 14px; color: #87919a; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Usman Younas — Software Engineer</title>
+<meta name="description" content="Usman Younas — Software Engineer specializing in Laravel/PHP web development and Oracle APEX ERP systems.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Serif:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EDEFE7;
+    --panel:#FAFAF6;
+    --ink:#1E2A24;
+    --ink-soft:#4B5850;
+    --accent:#3B7A57;
+    --accent-warm:#A85A2A;
+    --line:#CBD0C2;
+    --white:#FFFFFF;
+    --measure: 680px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+
+  body{
+    margin:0;
+    background:
+      radial-gradient(var(--line) 1px, transparent 1px) 0 0/28px 28px,
+      var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Serif', Georgia, serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important;}
+  }
+
+  h1,h2,h3,.display{
+    font-family:'Space Grotesk', sans-serif;
+    color:var(--ink);
+    letter-spacing:-0.01em;
+  }
+
+  a{color:var(--accent); text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+
+  .wrap{
+    max-width:960px;
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  .measure{max-width:var(--measure);}
+
+  nav{
+    position:sticky; top:0; z-index:10;
+    background:rgba(237,239,231,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{
+    display:flex; justify-content:space-between; align-items:center;
+    padding-top:16px; padding-bottom:16px;
+  }
+  nav .brand{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    font-size:15px;
+    color:var(--ink);
+  }
+  nav ul{
+    list-style:none; display:flex; gap:26px; margin:0; padding:0;
+    font-size:14px;
+  }
+  nav a{color:var(--ink-soft);}
+  nav a:hover{color:var(--accent); text-decoration:none;}
+
+  /* HERO */
+  .hero{
+    padding:76px 0 64px;
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:40px;
+    align-items:center;
+  }
+  .hero-copy{
+    opacity:0; transform:translateY(14px);
+    animation:rise 0.7s ease-out forwards;
+  }
+  .hero-diagram{
+    opacity:0;
+    animation:rise 0.9s ease-out 0.15s forwards;
+  }
+  @keyframes rise{ to{opacity:1; transform:translateY(0);} }
+
+  .kicker{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--accent);
+    margin:0 0 14px;
+  }
+  .hero h1{
+    font-size:44px;
+    font-weight:700;
+    margin:0 0 8px;
+    line-height:1.08;
+  }
+  .hero .role{
+    font-size:19px;
+    color:var(--ink-soft);
+    margin:0 0 22px;
+    font-family:'IBM Plex Serif', serif;
+    font-style:italic;
+  }
+  .hero p.pitch{
+    font-size:16.5px;
+    color:var(--ink);
+    margin:0 0 30px;
+  }
+  .cta-row{display:flex; flex-wrap:wrap; gap:14px;}
+  .btn{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:14.5px;
+    font-weight:500;
+    padding:11px 20px;
+    border-radius:3px;
+    display:inline-block;
+    border:1px solid var(--ink);
+  }
+  .btn.primary{ background:var(--ink); color:var(--paper); }
+  .btn.primary:hover{ background:var(--accent); border-color:var(--accent); text-decoration:none; }
+  .btn.ghost{ background:transparent; color:var(--ink); border-color:var(--line); }
+  .btn.ghost:hover{ border-color:var(--ink); text-decoration:none; }
+
+  svg.diagram{ width:100%; height:auto; }
+  .node-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    fill:var(--ink);
+  }
+  .node-sub{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:9.5px;
+    fill:var(--ink-soft);
+  }
+
+  /* SECTIONS */
+  section{ padding:56px 0; border-top:1px solid var(--line); }
+  section.first{ border-top:none; }
+
+  .section-head{
+    display:flex; align-items:baseline; justify-content:space-between;
+    margin-bottom:30px;
+  }
+  .section-head h2{ font-size:24px; margin:0; }
+  .section-head .tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; color:var(--ink-soft);
+  }
+
+  /* ABOUT */
+  .about p{ font-size:16px; color:var(--ink); }
+
+  /* SKILLS */
+  .skill-groups{
+    display:grid;
+    grid-template-columns:1.3fr 1fr 1fr;
+    gap:36px;
+  }
+  .skill-group h3{
+    font-size:15px; margin:0 0 4px;
+  }
+  .skill-group.lead h3{ color:var(--accent); }
+  .skill-group .note{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px; color:var(--ink-soft);
+    margin:0 0 14px;
+  }
+  .pill-list{ list-style:none; padding:0; margin:0; display:flex; flex-wrap:wrap; gap:8px; }
+  .pill-list li{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    background:var(--panel);
+    border:1px solid var(--line);
+    padding:6px 11px;
+    border-radius:3px;
+    color:var(--ink);
+  }
+  .skill-group.lead .pill-list li{
+    border-color:var(--accent);
+    background:#EFF5F0;
+  }
+
+  /* PROJECTS as records */
+  .record{
+    padding:26px 0;
+    border-top:1px solid var(--line);
+    display:grid;
+    grid-template-columns:1fr;
+    gap:8px;
+  }
+  .record:first-child{ border-top:none; padding-top:0; }
+  .record-top{
+    display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:8px;
+  }
+  .record h3{ font-size:19px; margin:0; }
+  .record-meta{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    color:var(--accent-warm);
+  }
+  .record p{ margin:2px 0 8px; color:var(--ink-soft); font-size:15px; max-width:var(--measure); }
+  .tag-row{ display:flex; gap:8px; flex-wrap:wrap; }
+  .tag-row span{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color:var(--ink-soft);
+    border:1px solid var(--line);
+    padding:3px 9px;
+    border-radius:2px;
+  }
+
+  /* EXPERIENCE */
+  .exp-item{
+    display:grid;
+    grid-template-columns:34px 1fr;
+    gap:18px;
+    padding:22px 0;
+    border-top:1px solid var(--line);
+  }
+  .exp-item:first-child{ border-top:none; padding-top:0; }
+  .exp-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--accent);
+    padding-top:2px;
+  }
+  .exp-role{ font-size:16.5px; font-weight:600; margin:0; font-family:'Space Grotesk',sans-serif; }
+  .exp-org{ font-size:14.5px; color:var(--ink-soft); margin:2px 0 8px; }
+  .exp-org .dates{ font-family:'IBM Plex Mono', monospace; font-size:12px; }
+  .exp-item p.desc{ font-size:14.5px; color:var(--ink); margin:0; max-width:var(--measure); }
+
+  /* CERTS / EDU */
+  .cred-grid{ display:grid; grid-template-columns:1fr 1fr; gap:32px; }
+  .cred-grid h3{ font-size:14px; margin:0 0 12px; color:var(--ink-soft); font-family:'IBM Plex Mono', monospace; font-weight:400;}
+  .cred-item{ margin-bottom:14px; }
+  .cred-item .name{ font-size:15px; font-weight:600; font-family:'Space Grotesk',sans-serif; }
+  .cred-item .sub{ font-size:13px; color:var(--ink-soft); }
+
+  /* CONTACT */
+  .contact-grid{
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(180px,1fr));
+    gap:20px;
+  }
+  .contact-card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:3px;
+    padding:18px 20px;
+  }
+  .contact-card .label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px; color:var(--ink-soft); margin-bottom:6px;
+  }
+  .contact-card a, .contact-card span.val{
+    font-size:15px; font-weight:500; font-family:'Space Grotesk',sans-serif;
+  }
+
+  footer{
+    border-top:1px solid var(--line);
+    padding:30px 0 50px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--ink-soft);
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+  }
+
+  @media (max-width: 820px){
+    .hero{ grid-template-columns:1fr; padding-top:52px; }
+    .hero-diagram{ order:-1; max-width:280px; margin:0 auto; }
+    .hero h1{ font-size:32px; }
+    .skill-groups{ grid-template-columns:1fr; gap:26px; }
+    .cred-grid{ grid-template-columns:1fr; }
+    nav ul{ display:none; }
+  }
+</style>
 </head>
 <body>
-  <main class="card">
+
+<nav>
+  <div class="wrap">
+    <span class="brand">Usman Younas</span>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#work">Web Development</a></li>
+      <li><a href="#erp">ERP &amp; Oracle</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="wrap hero">
+  <div class="hero-copy">
+    <p class="kicker">Software Engineer — Faisalabad, Pakistan</p>
     <h1>Usman Younas</h1>
-    <p>Oracle Developer • Laravel Developer • Web Applications • IT Consulting</p>
-    <span class="badge">🚀 GitHub Pages Test Successful</span>
-    <footer>This is a test portfolio page published with GitHub Pages.</footer>
-  </main>
+    <p class="role">Laravel/PHP web development &amp; Oracle APEX ERP systems</p>
+    <p class="pitch">I build production web applications and ERP systems — e-commerce platforms, POS systems, and business websites in Laravel, plus HR, finance, and inventory modules in Oracle APEX. Currently Senior Software Engineer at Fashion &amp; Trends, and founder of UzySolution.</p>
+    <div class="cta-row">
+      <a class="btn primary" href="#work">View my work</a>
+      <a class="btn ghost" href="https://www.fiverr.com/expertusmanbhai" target="_blank" rel="noopener">Hire me on Fiverr</a>
+      <a class="btn ghost" href="#contact">Contact</a>
+    </div>
+  </div>
+
+  <div class="hero-diagram" aria-hidden="true">
+    <svg class="diagram" viewBox="0 0 320 380" xmlns="http://www.w3.org/2000/svg">
+      <line x1="60" y1="45" x2="60" y2="115" stroke="#CBD0C2" stroke-width="1.5"/>
+      <line x1="60" y1="115" x2="60" y2="185" stroke="#CBD0C2" stroke-width="1.5"/>
+      <line x1="60" y1="185" x2="60" y2="255" stroke="#CBD0C2" stroke-width="1.5"/>
+      <line x1="60" y1="255" x2="60" y2="325" stroke="#CBD0C2" stroke-width="1.5"/>
+
+      <rect x="8" y="12" width="230" height="62" rx="3" fill="#FAFAF6" stroke="#3B7A57" stroke-width="1.5"/>
+      <text x="24" y="38" class="node-label">Client requirement</text>
+      <text x="24" y="56" class="node-sub">scope &amp; workflow</text>
+
+      <rect x="40" y="82" width="230" height="62" rx="3" fill="#FAFAF6" stroke="#CBD0C2" stroke-width="1.5"/>
+      <text x="56" y="108" class="node-label">Database design</text>
+      <text x="56" y="126" class="node-sub">MySQL / Oracle schema</text>
+
+      <rect x="8" y="152" width="230" height="62" rx="3" fill="#FAFAF6" stroke="#CBD0C2" stroke-width="1.5"/>
+      <text x="24" y="178" class="node-label">Application build</text>
+      <text x="24" y="196" class="node-sub">Laravel / Oracle APEX</text>
+
+      <rect x="40" y="222" width="230" height="62" rx="3" fill="#FAFAF6" stroke="#CBD0C2" stroke-width="1.5"/>
+      <text x="56" y="248" class="node-label">Testing &amp; delivery</text>
+      <text x="56" y="266" class="node-sub">QA, docs, handover</text>
+
+      <rect x="8" y="292" width="230" height="62" rx="3" fill="#3B7A57" stroke="#3B7A57" stroke-width="1.5"/>
+      <text x="24" y="318" class="node-label" fill="#FAFAF6">Live system</text>
+      <text x="24" y="336" class="node-sub" fill="#E4EFE7">in production</text>
+    </svg>
+  </div>
+</header>
+
+<main>
+
+  <section id="about" class="first wrap">
+    <div class="section-head">
+      <h2>About</h2>
+      <span class="tag">01 — profile</span>
+    </div>
+    <div class="about measure">
+      <p>Software engineer with 4+ years in Oracle APEX, PL/SQL, and Laravel/PHP. I build production ERP systems — HRMS, payroll, inventory, fixed assets, and financial auditing — for manufacturing and education clients. Recent work includes a geofenced biometric attendance system with facial recognition, an offline-first Restaurant POS, and a food delivery platform handling 50+ daily orders. I also build business websites, including a B2B trade site for a Dubai client, plus custom reports and dashboards.</p>
+      <p>Clean code, client satisfaction, and on-time delivery are my priorities.</p>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <div class="section-head">
+      <h2>Skills &amp; Expertise</h2>
+      <span class="tag">02 — stack</span>
+    </div>
+    <div class="skill-groups">
+      <div class="skill-group lead">
+        <h3>Web Development</h3>
+        <p class="note">primary focus</p>
+        <ul class="pill-list">
+          <li>Laravel</li><li>PHP</li><li>MySQL</li><li>E-commerce</li>
+          <li>REST APIs</li><li>PWA / Offline-first</li>
+          <li>Payment Gateways</li><li>Bootstrap 5</li><li>Alpine.js</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h3>ERP &amp; Oracle</h3>
+        <p class="note">certified</p>
+        <ul class="pill-list">
+          <li>Oracle APEX</li><li>PL/SQL</li><li>Oracle Database</li>
+          <li>Oracle Forms &amp; Reports</li><li>HRMS / Payroll</li>
+          <li>Biometric Systems</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h3>Tools &amp; Systems</h3>
+        <p class="note">supporting</p>
+        <ul class="pill-list">
+          <li>Database Design</li><li>Excel Reporting</li>
+          <li>Dashboards</li><li>Process Automation</li>
+          <li>Data Analysis</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="work" class="wrap">
+    <div class="section-head">
+      <h2>Web Development Projects</h2>
+      <span class="tag">03 — selected work</span>
+    </div>
+
+    <div class="record">
+      <div class="record-top">
+        <h3>Fresh Food Delivery Platform</h3>
+        <span class="record-meta">live — 50+ orders/day</span>
+      </div>
+      <p>E-commerce site for a vegetable, chicken, and fresh food delivery business. Built a pricing engine handling daily rate changes, quantity tiers, and product variants, with order-time price snapshots so history never changes.</p>
+      <div class="tag-row"><span>Laravel 12</span><span>MySQL</span><span>Bootstrap 5</span><span>JazzCash / Easypaisa</span></div>
+    </div>
+
+    <div class="record">
+      <div class="record-top">
+        <h3>Offline-First Restaurant POS</h3>
+        <span class="record-meta">in development</span>
+      </div>
+      <p>Hybrid POS system for restaurants in Pakistan that keeps working through internet outages and syncs automatically once back online. Covers table management, kitchen display, inventory, and Pakistan fiscal integration.</p>
+      <div class="tag-row"><span>Laravel 12</span><span>PWA</span><span>IndexedDB</span><span>Alpine.js</span></div>
+    </div>
+
+    <div class="record">
+      <div class="record-top">
+        <h3>B2B Trade Website — Global Foodstuff Trading FZE</h3>
+        <span class="record-meta">Dubai client</span>
+      </div>
+      <p>Corporate website for an international import/export company across 6 branches and 9 target markets. Optimized Lighthouse scores from 53/85/100/92 to 74/95/100/100 across performance, accessibility, best practices, and SEO.</p>
+      <div class="tag-row"><span>Laravel 12</span><span>Bootstrap 5</span><span>Performance Tuning</span></div>
+    </div>
+
+    <div class="record">
+      <div class="record-top">
+        <h3>School Management System</h3>
+        <span class="record-meta">10-phase build</span>
+      </div>
+      <p>Role-based school management platform for Pakistani schools — student, teacher, fee, exam, and library modules, with PDF/Excel exports and JazzCash/Easypaisa support.</p>
+      <div class="tag-row"><span>Laravel</span><span>MySQL</span><span>Urdu Localization</span></div>
+    </div>
+  </section>
+
+  <section id="erp" class="wrap">
+    <div class="section-head">
+      <h2>ERP &amp; Oracle Projects</h2>
+      <span class="tag">04 — selected work</span>
+    </div>
+
+    <div class="record">
+      <div class="record-top">
+        <h3>Geofenced Biometric Attendance System</h3>
+        <span class="record-meta">Oracle APEX</span>
+      </div>
+      <p>Attendance system combining facial recognition and fingerprint (WebAuthn) login with geofenced check-in, so staff can only mark attendance on company premises. Built full-stack with a custom PL/SQL backend.</p>
+      <div class="tag-row"><span>Oracle APEX</span><span>PL/SQL</span><span>face-api.js</span><span>WebAuthn</span></div>
+    </div>
+
+    <div class="record">
+      <div class="record-top">
+        <h3>Fixed Asset Management System</h3>
+        <span class="record-meta">−60% manual processing</span>
+      </div>
+      <p>Asset register, depreciation, and disposal tracking with QR-code-based asset lookup and role-based access, integrated into the client's broader financial ERP.</p>
+      <div class="tag-row"><span>Oracle Database</span><span>PL/SQL</span><span>Laravel</span></div>
+    </div>
+
+    <div class="record">
+      <div class="record-top">
+        <h3>Manufacturing ERP — Yarn to Shipment</h3>
+        <span class="record-meta">Uniform House &amp; Home Textile</span>
+      </div>
+      <p>End-to-end ERP covering the full production cycle from yarn procurement to shipment, including pre-order and post-order costing, yarn management, knitting, HR, and accounts modules.</p>
+      <div class="tag-row"><span>Oracle Database</span><span>PL/SQL</span><span>Oracle Forms</span></div>
+    </div>
+
+    <div class="record">
+      <div class="record-top">
+        <h3>Financial Posting &amp; Audit Engine</h3>
+        <span class="record-meta">production ERP</span>
+      </div>
+      <p>Automated purchase and consumption voucher posting with configurable R&amp;D deduction rules, full audit trail triggers, and batch/error logging for a manufacturing ERP.</p>
+      <div class="tag-row"><span>Oracle 11g</span><span>PL/SQL</span><span>Audit Trails</span></div>
+    </div>
+  </section>
+
+  <section id="experience" class="wrap">
+    <div class="section-head">
+      <h2>Experience</h2>
+      <span class="tag">05 — history</span>
+    </div>
+
+    <div class="exp-item">
+      <span class="exp-num">01</span>
+      <div>
+        <p class="exp-role">Senior Software Engineer</p>
+        <p class="exp-org">Fashion &amp; Trends (Pvt) Ltd. — <span class="dates">Jun 2026 – Present</span></p>
+        <p class="desc">Managing database, web development, and ERP development covering the full production flow from yarn to shipment, plus HR and Finance modules.</p>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <span class="exp-num">02</span>
+      <div>
+        <p class="exp-role">Software Developer</p>
+        <p class="exp-org">The University of Faisalabad — <span class="dates">Oct 2023 – Jun 2026</span></p>
+        <p class="desc">Built education-sector websites, a Fixed Asset Management System that reduced manual processing by 60%, Oracle PL/SQL financial automation, and ERP components in Oracle APEX for enterprise clients.</p>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <span class="exp-num">03</span>
+      <div>
+        <p class="exp-role">Founder &amp; CEO</p>
+        <p class="exp-org">UzySolution — <span class="dates">Ongoing</span></p>
+        <p class="desc">Software house delivering Oracle APEX, Laravel/PHP, HRMS/payroll, inventory, and financial systems for clients across Pakistan and the Gulf.</p>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <span class="exp-num">04</span>
+      <div>
+        <p class="exp-role">Junior Software Developer</p>
+        <p class="exp-org">Fashion &amp; Trends (Pvt) Ltd. — <span class="dates">Nov 2021 – Jul 2022</span></p>
+        <p class="desc">Early role in garment manufacturing ERP development, prior to returning in a senior capacity in 2026.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <div class="section-head">
+      <h2>Certifications &amp; Education</h2>
+      <span class="tag">06 — credentials</span>
+    </div>
+    <div class="cred-grid">
+      <div>
+        <h3>Certifications</h3>
+        <div class="cred-item">
+          <div class="name">Oracle APEX Cloud Developer Certified Professional</div>
+          <div class="sub">2025</div>
+        </div>
+        <div class="cred-item">
+          <div class="name">Oracle Fusion Cloud Applications ERP Foundations — Certified Associate</div>
+          <div class="sub">2025</div>
+        </div>
+      </div>
+      <div>
+        <h3>Education</h3>
+        <div class="cred-item">
+          <div class="name">Bachelor of Computer Science</div>
+          <div class="sub">Virtual University of Pakistan — Graduated 2022</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="wrap">
+    <div class="section-head">
+      <h2>Contact</h2>
+      <span class="tag">07 — get in touch</span>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="label">Fiverr</div>
+        <a href="https://www.fiverr.com/expertusmanbhai" target="_blank" rel="noopener">@expertusmanbhai</a>
+      </div>
+      <div class="contact-card">
+        <div class="label">LinkedIn</div>
+        <a href="https://www.linkedin.com/in/usman-younas-2874b7223/" target="_blank" rel="noopener">usman-younas</a>
+      </div>
+      <div class="contact-card">
+        <div class="label">Email</div>
+        <a href="mailto:uzzy.younas@gmail.com">uzzy.younas@gmail.com</a>
+      </div>
+      <div class="contact-card">
+        <div class="label">WhatsApp</div>
+        <a href="https://wa.me/923061745031" target="_blank" rel="noopener">+92 306 1745031</a>
+      </div>
+      <div class="contact-card">
+        <div class="label">Location</div>
+        <span class="val">Faisalabad, Pakistan</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="wrap">
+  <span>© 2026 Usman Younas</span>
+  <span>Oracle APEX · Laravel/PHP · ERP Systems</span>
+</footer>
+
 </body>
 </html>
